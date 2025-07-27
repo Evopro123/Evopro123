@@ -1,5 +1,5 @@
 <p align="center">
-   <a href="https://github.com/TechieGeeke">
+   <a href="https://github.com/TechieGeeke1">
       <!-- <img width="400" src="https://readme-typing-svg.herokuapp.com/?duration=5000&font=Righteous&color=E1E1E1&size=60&center=true&vCenter=true&width=450&height=100&lines=TechieGeeke"> -->
    <img width="400" src="https://i.imgur.com/ID0WDwE.png">
    <br>
