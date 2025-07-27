@@ -1,0 +1,319 @@
+name: Generate Metrics
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+jobs:
+  Generating_Metrics:
+    runs-on: ubuntu-latest
+    steps:
+      # cartoon screenshot
+      - name: cartoon
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/cartoon.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_screenshot: yes
+          plugin_screenshot_title: Cartoon of the day
+          plugin_screenshot_url: https://comic.browserling.com/random
+          plugin_screenshot_selector: "#cartoon img" 
+          plugin_screenshot_background: no
+          config_padding: 0, 8 + 1%
+      # joke screenshot
+      - name: joke
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/joke.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_screenshot: yes
+          plugin_screenshot_title: Joke of the day
+          plugin_screenshot_url: https://readme-jokes.vercel.app/api?bgColor=%23fff&hideBorder&textColor=%23000&qColor=%23000&aColor=%2325b
+          plugin_screenshot_selector: ".container" 
+          plugin_screenshot_background: no
+          config_padding: 0, 8 + 5%
+      # meme screenshot
+      - name: meme
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/meme.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_screenshot: yes
+          plugin_screenshot_title: Meme of the day
+          plugin_screenshot_url: https://programmerhumor.io/?bimber_random_post=true
+          plugin_screenshot_selector: ".g1-frame-inner" 
+          plugin_screenshot_background: no
+          config_padding: 0, 8 + 1%
+      # stats
+      - name: stats
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/stats.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: header, activity, community, repositories
+          plugin_lines: yes
+      # notable contributions
+      - name: notable contributions
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/contribs.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_notable: yes
+      # isocalendar
+      - name: isocalendar
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/isocalendar.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_isocalendar: yes
+      # languages
+      - name: languages
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/languages.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_languages: yes
+          plugin_languages_ignored: python
+          plugin_languages_colors: "jupyter notebook:#58a6ff, html:#ff3a3a, css:#7d6cff, scss:#ff48bd, ..."
+          plugin_languages_aliases: "jupyter notebook:Python, ..."
+          plugin_languages_sections: most-used #, recently-used
+          plugin_languages_details: percentage
+          plugin_languages_categories: data, markup, programming, prose
+      # topics
+      - name: topics
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/topics.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_topics: yes
+          plugin_topics_sort: stars
+          plugin_topics_limit: 0
+      # mastered
+      - name: mastered
+        uses: lowlighter/metrics@latest
+        with:
+           filename: Images/Dynamic/mastered.svg
+           token: ${{ secrets.GIT_TOKEN }}
+           committer_token: ${{ secrets.GIT_TOKEN }}
+           base: ""
+           plugin_topics: yes
+           plugin_topics_sort: stars
+           plugin_topics_mode: mastered
+           plugin_topics_limit: 0 
+      # coding habits
+      - name: coding habits
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/habits.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_habits: yes
+          plugin_habits_from: 200 
+          plugin_habits_days: 100
+          plugin_habits_facts: yes 
+          plugin_habits_charts: yes
+          plugin_habits_trim: no
+      # issues & PRs
+      - name: issues & PRs
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/issuesPRs.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_followup: yes
+          plugin_followup_sections: repositories, user
+      # achievements
+      - name: achievements
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/achievements.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_achievements: yes
+          plugin_achievements_threshold: C       
+          plugin_achievements_secrets: yes   
+          plugin_achievements_limit: 0
+          plugin_achievements_display: compact
+      # activity
+      - name: Recent activity
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/activity.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_activity: yes
+          plugin_activity_limit: 5
+          plugin_activity_days: 0
+          plugin_activity_filter: issue, pr, release, fork, review, ref/create
+      # Snippet of the day
+      - name: Snippet of the day
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/snippet.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_code: yes
+          plugin_code_languages: javascript, typescript, python
+          plugin_code_load: 400
+      # followers
+      - name: Followers
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/people.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_people: yes
+          plugin_people_types: followers
+      # reactions
+      - name: reactions
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/reactions.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_reactions: yes
+          plugin_reactions_limit: 200 
+          plugin_reactions_limit_issues: 100  
+          plugin_reactions_days: 100
+          plugin_reactions_details: count, percentage
+      # Featured
+      - name: Featured repositories
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/featured.svg
+          token: ${{ secrets.GIT_TOKEN }}
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_repositories: yes
+          plugin_repositories_featured: TechieGeeke/TechieGeeke
+      # Stack Overflow
+      - name: Top answers from stackoverflow
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/stackoverflow.svg
+          token: NOT_NEEDED
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_stackoverflow: yes
+          plugin_stackoverflow_user: 18825453
+          plugin_stackoverflow_sections: answers-top
+          plugin_stackoverflow_limit: 2
+      # anime
+      - name: Favorites anime and currently watching
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/anime.svg
+          token: NOT_NEEDED
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_anilist: yes
+          plugin_anilist_medias: anime
+          plugin_anilist_sections: favorites, watching
+          plugin_anilist_limit: 1
+      # manga
+      - name: Favorites manga and currently reading
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/manga.svg
+          token: NOT_NEEDED
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_anilist: yes
+          plugin_anilist_medias: manga
+          plugin_anilist_sections: favorites, reading
+          plugin_anilist_limit: 1
+      # characters
+      - name: Favorites characters
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/character.svg
+          token: NOT_NEEDED
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_anilist: yes
+          plugin_anilist_sections: characters
+          plugin_anilist_limit_characters: 22
+      # tweets
+      - name: Latest tweets including attachments
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/tweets.svg
+          token: NOT_NEEDED
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_tweets: yes
+          plugin_tweets_token: ${{ secrets.TWITTER_TOKEN }}
+          plugin_tweets_attachments: yes
+          plugin_tweets_user: github
+          plugin_tweets_limit: 1
+      # articles
+      - name: Recent posts with descriptions and cover images
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/articles.svg
+          token: NOT_NEEDED
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_posts: yes
+          plugin_posts_source: dev.to
+          plugin_posts_limit: 2
+          plugin_posts_descriptions: yes
+          plugin_posts_covers: yes
+      # apple music
+      - name: Apple Music - Random track from playlist
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/apple.svg
+          token: NOT_NEEDED
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_music: yes
+          plugin_music_playlist: https://embed.music.apple.com/fr/playlist/usr-share/pl.u-V9D7m8Etjmjd0D
+          plugin_music_limit: 2
+      # spotify
+      - name: Spotify - Random track from playlist
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/spotify.svg
+          token: NOT_NEEDED
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_music: yes
+          plugin_music_playlist: https://open.spotify.com/embed/playlist/3nfA87oeJw4LFVcUDjRcqi
+      # Youtube
+      - name: Youtube Music
+        uses: lowlighter/metrics@latest
+        with:
+          filename: Images/Dynamic/youtube.svg
+          token: NOT_NEEDED
+          committer_token: ${{ secrets.GIT_TOKEN }}
+          base: ""
+          plugin_music: yes
+          plugin_music_playlist: >-
+            https://music.youtube.com/playlist?list=OLAK5uy_kU_uxp9TUOl9zVdw77xith8o9AknVwz9U
+
+
